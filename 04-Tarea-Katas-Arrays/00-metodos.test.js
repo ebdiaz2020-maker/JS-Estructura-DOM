@@ -3,7 +3,7 @@ const {
   filtrarDisponibles,
   calcularTotal,
   llamarSiguiente,
-} = require("./01-metodos");
+} = require("./00-metodos");
 
 describe("Katas Semana 4: Arrays y Métodos", () => {
   test("aplicarDescuento() debe restar el 20% a cada precio", () => {
