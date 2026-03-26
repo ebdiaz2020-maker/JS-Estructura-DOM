@@ -11,6 +11,7 @@
 -------------------------------------------------------------------------- */
 function soloAdultos(edades) {
   // TU CÓDIGO AQUÍ 👇
+    return edades.filter (edad => edad >= 18);
 }
 
 /* --------------------------------------------------------------------------
@@ -20,6 +21,7 @@ function soloAdultos(edades) {
 -------------------------------------------------------------------------- */
 function palabrasLargas(palabras) {
   // TU CÓDIGO AQUÍ 👇
+  return palabras.filter(palabraItem => palabraItem.length > 5);
 }
 
 /* --------------------------------------------------------------------------
@@ -29,6 +31,7 @@ function palabrasLargas(palabras) {
 -------------------------------------------------------------------------- */
 function enStock(productos) {
   // TU CÓDIGO AQUÍ 👇
+  return productos.filter(productoItem => productoItem.enStock)
 }
 
 /* --------------------------------------------------------------------------
@@ -38,6 +41,7 @@ function enStock(productos) {
 -------------------------------------------------------------------------- */
 function sinNegativos(numeros) {
   // TU CÓDIGO AQUÍ 👇
+  return numeros.filter(numeroitem => numeroitem >= 0);
 }
 
 /* --------------------------------------------------------------------------
@@ -47,6 +51,7 @@ function sinNegativos(numeros) {
 -------------------------------------------------------------------------- */
 function emailsValidos(emails) {
   // TU CÓDIGO AQUÍ 👇
+  return emails.filter(emailitem => emailitem.includes('@') && emailitem.includes('.'));
 }
 
 /* --------------------------------------------------------------------------
@@ -56,6 +61,7 @@ function emailsValidos(emails) {
 -------------------------------------------------------------------------- */
 function solosPares(numeros) {
   // TU CÓDIGO AQUÍ 👇
+  return numeros.filter(numeroitem => numeroitem % 2 ===0);
 }
 
 /* --------------------------------------------------------------------------
@@ -65,6 +71,7 @@ function solosPares(numeros) {
 -------------------------------------------------------------------------- */
 function usuariosActivos(usuarios) {
   // TU CÓDIGO AQUÍ 👇
+  return usuarios.filter(usuarioitem => usuarioitem.activo);
 }
 
 /* --------------------------------------------------------------------------
@@ -75,6 +82,8 @@ function usuariosActivos(usuarios) {
 -------------------------------------------------------------------------- */
 function eliminarFalsy(arr) {
   // TU CÓDIGO AQUÍ 👇
+
+  return arr.filter(arritem => arritem(true));
 }
 
 /* --------------------------------------------------------------------------
@@ -85,6 +94,10 @@ function eliminarFalsy(arr) {
 -------------------------------------------------------------------------- */
 function filtroPrecio(precios, rango) {
   // TU CÓDIGO AQUÍ 👇
+  //return precios.filter(precioitem => precioitem >= rango.min && precioitem <= rango.max);
+  return precios.filter((precioitem) => precioitem.beetween(rango.min, rango.max),
+  );
+  
 }
 
 /* --------------------------------------------------------------------------
@@ -95,6 +108,7 @@ function filtroPrecio(precios, rango) {
 -------------------------------------------------------------------------- */
 function sinDuplicados(numeros) {
   // TU CÓDIGO AQUÍ 👇
+  return [...new Set(numeros)]; // set : devuelve un nuevo array con los elementos sin duplicados
 }
 
 // 🚨 ¡NO TOCAR ESTA LÍNEA!
