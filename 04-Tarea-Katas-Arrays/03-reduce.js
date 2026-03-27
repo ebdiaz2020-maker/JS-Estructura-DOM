@@ -11,6 +11,7 @@
 -------------------------------------------------------------------------- */
 function sumarTotal(numeros) {
   // TU CÓDIGO AQUÍ 👇
+  return numeros.reduce((acumulador, numeroItem) => acumulador + numeroItem, 0);
 }
 
 /* --------------------------------------------------------------------------
@@ -20,6 +21,7 @@ function sumarTotal(numeros) {
 -------------------------------------------------------------------------- */
 function multiplicarTodo(numeros) {
   // TU CÓDIGO AQUÍ 👇
+  return numeros.reduce((acumulador, numeroItem) => acumulador * numeroItem, 1);
 }
 
 /* --------------------------------------------------------------------------
@@ -30,6 +32,9 @@ function multiplicarTodo(numeros) {
 -------------------------------------------------------------------------- */
 function encontrarMaximo(numeros) {
   // TU CÓDIGO AQUÍ 👇
+  return numeros.reduce((maximoValor, numeroItem) => {
+    return numeroItem > maximoValor ? numeroItem : maximoValor;
+  });  
 }
 
 /* --------------------------------------------------------------------------
@@ -40,6 +45,10 @@ function encontrarMaximo(numeros) {
 -------------------------------------------------------------------------- */
 function contarOcurrencias(arr) {
   // TU CÓDIGO AQUÍ 👇
+  return arr.reduce((acc, itemStr) => {
+    acc[itemStr] = (acc[itemStr] || 0) + 1;
+    return acc;
+  }, {});
 }
 
 /* --------------------------------------------------------------------------
@@ -49,6 +58,8 @@ function contarOcurrencias(arr) {
 -------------------------------------------------------------------------- */
 function aplanar(arrayDeArrays) {
   // TU CÓDIGO AQUÍ 👇
+  //return arrayDeArrays.reduce((acc, arrayItem) => acc.concat(arrayItem), []);
+  return arrayDeArrays.flat();
 }
 
 /* --------------------------------------------------------------------------
@@ -59,6 +70,7 @@ function aplanar(arrayDeArrays) {
 -------------------------------------------------------------------------- */
 function totalCarrito(items) {
   // TU CÓDIGO AQUÍ 👇
+  return items.reduce((totalDelCarrito, producto) => totalDelCarrito + producto.precio * producto.cantidad, 0);
 }
 
 /* --------------------------------------------------------------------------
@@ -70,6 +82,14 @@ function totalCarrito(items) {
 -------------------------------------------------------------------------- */
 function agruparPorCategoria(productos) {
   // TU CÓDIGO AQUÍ 👇
+  return productos.reduce((acc, producto) => {
+    if (!acc[producto.categoria]) {
+      acc[producto.categoria] = [];
+    }
+    acc[producto.categoria].push(producto.nombre);
+    return acc;
+  }, {});
+
 }
 
 /* --------------------------------------------------------------------------
@@ -80,6 +100,7 @@ function agruparPorCategoria(productos) {
 -------------------------------------------------------------------------- */
 function promedio(numeros) {
   // TU CÓDIGO AQUÍ 👇
+  return Math.round(numeros.reduce((acumulador, numeroItem) => acumulador + numeroItem, 0) / numeros.legth * 100) / 100;
 }
 
 /* --------------------------------------------------------------------------
@@ -90,6 +111,19 @@ function promedio(numeros) {
 -------------------------------------------------------------------------- */
 function construirOracion(palabras) {
   // TU CÓDIGO AQUÍ 👇
+  /*
+  const oracion = palabras.reduce((acc, palabraItem, i) => {
+    if (i === 0) {
+      return palabraItem;
+    }
+    return acc + " " + palabraItem;
+  }, "");
+  */
+  return palabras.reduce(
+    (oracion, palabraItem) =>
+      oracion ? `${oracion} ${palabraItem}` : palabraItem,
+    "",
+  );
 }
 
 /* --------------------------------------------------------------------------
