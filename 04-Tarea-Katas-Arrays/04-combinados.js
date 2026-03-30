@@ -14,6 +14,16 @@
 -------------------------------------------------------------------------- */
 function ticketCompra(productos) {
   // TU CÓDIGO AQUÍ 👇
+  /*
+  const ProductosFiltrados = productos.filter(productoItem => productoItem.disponible)
+  const PrecioCantidad = ProductosFiltrados.map(productoItem => productoItem.precio * productoItem.cantidad)
+  return PrecioCantidad.reduce((total, precioCantidad) => total + precioCantidad, 0)
+  */
+  
+  return productos.filter(productoItem => productoItem.disponible)
+       .map(productoItem => productoItem.precio * productoItem.cantidad)
+       .reduce((total, precioCantidad) => total + precioCantidad, 0)
+       
 }
 
 /* --------------------------------------------------------------------------
@@ -26,6 +36,15 @@ function ticketCompra(productos) {
 -------------------------------------------------------------------------- */
 function resumenNotas(alumnos) {
   // TU CÓDIGO AQUÍ 👇
+  return alumnos.reduce((acumulador, alumnoItem) => {
+    if (alumnoItem.nota >= 6) {
+      acumulador.aprobados.push(alumnoItem.nombre)
+    } else {
+      acumulador.reprobados.push(alumnoItem.nombre)
+    }
+    return acumulador;
+  }, { aprobados: [], reprobados: [] });
+
 }
 
 /* --------------------------------------------------------------------------
@@ -36,6 +55,7 @@ function resumenNotas(alumnos) {
 -------------------------------------------------------------------------- */
 function unicasEnMayusculas(palabras) {
   // TU CÓDIGO AQUÍ 👇
+  return [...new Set(palabras)].map(palabraItem => palabraItem.toUpperCase())
 }
 
 /* --------------------------------------------------------------------------
@@ -46,6 +66,14 @@ function unicasEnMayusculas(palabras) {
 -------------------------------------------------------------------------- */
 function top3MasCaros(productos) {
   // TU CÓDIGO AQUÍ 👇
+  /*
+  const ProductosOrdenados = productos.sort((a, b) => b.precio - a.precio)
+  const Top3Caros = ProductosOrdenados.slice(0, 3)
+  return Top3Caros.map(productoItem => productoItem.nombre)
+  */
+  return productos.sort((a, b) => b.precio - a.precio)
+       .slice(0, 3)
+       .map(productoItem => productoItem.nombre)
 }
 
 /* --------------------------------------------------------------------------
@@ -58,7 +86,12 @@ function top3MasCaros(productos) {
 -------------------------------------------------------------------------- */
 function bonosPremium(usuarios) {
   // TU CÓDIGO AQUÍ 👇
-}
+  /*const usrsPremium = usuarios.filter(usuarioItem => usuarioItem.esPremium)
+  return usrsPremium.map((usuarioItem) => ({...usuarioItem,  saldo: usuarioItem.saldo * 1.1,})) ;
+  */
+  return usuarios.filter(usuarioItem => usuarioItem.esPremium)
+       .map((usuarioItem) => ({...usuarioItem,  saldo: usuarioItem.saldo * 1.1,})) ;
+  }
 
 /* --------------------------------------------------------------------------
    KATA 6 — Estadísticas de Ventas
@@ -69,6 +102,15 @@ function bonosPremium(usuarios) {
 -------------------------------------------------------------------------- */
 function ventasPorRegion(ventas) {
   // TU CÓDIGO AQUÍ 👇
+  return ventas.reduce((acumulador, ventaItem) => {
+    if (acumulador[ventaItem.region]) {
+      acumulador[ventaItem.region] += ventaItem.monto;
+    } else {
+      acumulador[ventaItem.region] = ventaItem.monto;
+    }
+    return acumulador;
+  }, {});
+
 }
 
 /* --------------------------------------------------------------------------
@@ -80,7 +122,17 @@ function ventasPorRegion(ventas) {
    → ['TORNILLO']
 -------------------------------------------------------------------------- */
 function inventarioCritico(productos) {
-  // TU CÓDIGO AQUÍ 👇
+  // TU CÓDIGO AQUÍ
+  /*
+  const productosConStockMinimo = productos.filter(productoItem => productoItem.stock < productoItem.minimo)
+  const productosEnMayusculas = productosConStockMinimo.map(productoItem => productoItem.nombre.toUpperCase())
+  return productosEnMayusculas.sort() 
+  */
+  
+  return productos.filter(productoItem => productoItem.stock < productoItem.minimo)
+       .map(productoItem => productoItem.nombre.toUpperCase())
+       .sort();
+       
 }
 
 /* --------------------------------------------------------------------------
@@ -93,6 +145,15 @@ function inventarioCritico(productos) {
 -------------------------------------------------------------------------- */
 function limpiarHistorial(historial) {
   // TU CÓDIGO AQUÍ 👇
+  /*
+  const histonrialsinDuplicados = [...new Set(historial)]
+  const historialLimpio = histonrialsinDuplicados.filter(historialItem => historialItem !== '')
+  return historialLimpio.map(historialItem => historialItem.toLowerCase()).sort()
+  */
+  return [...new Set(historial)]
+       .filter(historialItem => historialItem !== '')
+       .map(historialItem => historialItem.toLowerCase())
+       .sort();
 }
 
 /* --------------------------------------------------------------------------
@@ -104,6 +165,16 @@ function limpiarHistorial(historial) {
 -------------------------------------------------------------------------- */
 function rankingJugadores(jugadores) {
   // TU CÓDIGO AQUÍ 👇
+  /*
+  const jugadoresActivos = jugadores.filter(jugadorItem => jugadorItem.activo)
+  const jugadoresOrdenados = jugadoresActivos.sort((a, b) => b.puntos - a.puntos)
+  const top3Jugadores = jugadoresOrdenados.slice(0, 3)
+  return top3Jugadores.map((jugadorItem, index) => `${index + 1}. ${jugadorItem.nombre} — ${jugadorItem.puntos} pts`)
+*/
+  return jugadores.filter(jugadorItem => jugadorItem.activo)
+       .sort((a, b) => b.puntos - a.puntos)
+       .slice(0, 3)
+       .map((jugadorItem, index) => `${index + 1}. ${jugadorItem.nombre} — ${jugadorItem.puntos} pts`)
 }
 
 /* --------------------------------------------------------------------------
@@ -115,6 +186,23 @@ function rankingJugadores(jugadores) {
 -------------------------------------------------------------------------- */
 function salarioPromedioTech(empleados) {
   // TU CÓDIGO AQUÍ 👇
+  /*const empleadosTecnologia = empleados.filter(empleadoItem => empleadoItem.departamento === 'tecnología' && empleadoItem.activo)
+  if (empleadosTecnologia.length === 0) {
+    return 0;
+  } else {
+    const salarioTotal = empleadosTecnologia.reduce((total, empleadoItem) => total + empleadoItem.salario, 0)
+    const salarioPromedio = salarioTotal / empleadosTecnologia.length
+    return parseFloat(salarioPromedio.toFixed(2))
+  } */
+ return empleados.filter(empleadoItem => empleadoItem.departamento === 'tecnología' && empleadoItem.activo)
+       .reduce((acumulador, empleadoItem, index, array) => {
+         acumulador.totalSalario = acumulador.totalSalario + empleadoItem.salario;
+         if (index === array.length - 1) {
+           const salarioPromedio = acumulador.totalSalario / array.length;
+           return parseFloat(salarioPromedio.toFixed(2));
+         }
+         return acumulador;
+       }, { totalSalario: 0 }) || 0;
 }
 
 // 🚨 ¡NO TOCAR ESTA LÍNEA!
